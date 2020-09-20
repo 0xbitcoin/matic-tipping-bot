@@ -161,6 +161,34 @@ client.on('message', async message   => {
 
   }
 
+
+  if (message.content.startsWith(`${prefix}tip`)) {
+
+    var author_id = message.author.id;
+
+
+    var args = message.content.split(' ');
+    var recipientUsername = args[1];
+    var amount = args[2];
+
+
+    var existingWallet = await WalletHelper.findExistingWalletByUserID(author_id);
+
+    var result = await WalletHelper.sendTip(author_id, recipientUsername, amount );
+
+    if(result.success )
+    {
+      await message.channel.send('You do not have a wallet.  Use the command "!wallet new" to generate one.');
+
+    }else{
+      await message.channel.send(result.errormessage);
+
+    }
+
+
+
+  }
+
 });
 
 

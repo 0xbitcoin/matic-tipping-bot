@@ -3,5 +3,10 @@
   "ETH_ACCT": {
     "PUBLIC_ADDRESS": "",
     "PRIVATE_KEY": ""
+  },
+  "INFURA":{
+    "ID":"",
+    "SECRET":"",
+    "URL":"https://mainnet.infura.io/v3/????"
   }
 }
