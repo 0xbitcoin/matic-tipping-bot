@@ -23,7 +23,7 @@ module.exports = {
   {
     //.PUBLIC_ADDRESS .PRIVATE_KEY
      return config.ETH_ACCT
-  }
+  },
 
 
   async generateNewWallet(uid){
@@ -54,6 +54,19 @@ module.exports = {
 
       return result;
   }
+
+  async getCurrentBalanceByUserID(uid)
+  {
+      var wallet = await findExistingWalletByUserID(uid);
+      var address = wallet.address;
+
+      //query the tipjar contract
+
+
+
+
+  }
+
 
 
 }

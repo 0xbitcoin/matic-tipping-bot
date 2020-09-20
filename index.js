@@ -67,9 +67,7 @@ client.on('message', async message   => {
       if (message.content === (`${prefix}wallet info`)) {
 
 
-        //find existing wallet in mongo
-        var author_id = message.author.id;
-        console.log(author_id)
+          var author_id = message.author.id;
 
            var existingWallet = await WalletHelper.findExistingWalletByUserID(author_id);
 
@@ -96,6 +94,33 @@ client.on('message', async message   => {
         //    message.author.dm_channel.send('A new wallet has been generated.  Your Public address is '+newWalletData.address+'.  The Private key for this account is '+  newWalletData.address );
 
       }
+
+
+        if (message.content === (`${prefix}wallet balance`)) {
+
+          var author_id = message.author.id;
+
+           var existingWallet = await WalletHelper.findExistingWalletByUserID(author_id);
+
+           var currentBalanceFormatted = await WalletHelper.getCurrentBalanceByUserID(author_id);
+
+
+
+           if(  existingWallet  )
+           {
+             await message.channel.send('Your balance is '+ currentBalanceFormatted +' 0xBTC on the Matic Network within the Tipjar contract (https://tipjar.0xbtc.io).');
+
+
+          }else{
+            await message.channel.send('You do not have a wallet.  Use the command "!wallet new" to generate one.');
+
+
+          }
+
+
+
+        }
+
 
 
 

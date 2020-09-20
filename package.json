@@ -1,5 +1,8 @@
 {
   "name": "matic-tipping-bot",
+  "engines": {
+    "node": ">=12.18.4"
+  },
   "version": "0.1.0",
   "description": "A bot for tipping tokens",
   "main": "index.js",
