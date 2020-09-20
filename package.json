@@ -1,7 +1,7 @@
 {
-  "name": "eth-wallet-bot",
+  "name": "matic-tipping-bot",
   "version": "0.1.0",
-  "description": "A bot to manage eth wallets",
+  "description": "A bot for tipping tokens",
   "main": "index.js",
   "scripts": {
     "bot": "node index.js",
