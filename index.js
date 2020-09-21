@@ -169,16 +169,18 @@ client.on('message', async message   => {
 
     var args = message.content.split(' ');
     var recipientUsername = args[1];
-    var amount = args[2];
+    var amountFormatted = args[2];
+
+    console.log("got tip command ", recipientUsername, amount )
 
 
     var existingWallet = await WalletHelper.findExistingWalletByUserID(author_id);
 
-    var result = await WalletHelper.sendTip(author_id, recipientUsername, amount );
+    var result = await WalletHelper.sendTip(author_id, recipientUsername, amountFormatted );
 
     if(result.success )
     {
-      await message.channel.send('You do not have a wallet.  Use the command "!wallet new" to generate one.');
+      await message.channel.send('A tip of '+ amount + 'has been sent to' + recipientUsername + '.');
 
     }else{
       await message.channel.send(result.errormessage);
