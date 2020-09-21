@@ -167,20 +167,30 @@ client.on('message', async message   => {
     var author_id = message.author.id;
 
 
-    var args = message.content.split(' ');
+    var args = message.content.trim().split(' ');
     var recipientUsername = args[1];
     var amountFormatted = args[2];
 
-    console.log("got tip command ", recipientUsername, amount )
+    console.log("got tip command ", recipientUsername, amountFormatted )
+
+    const recipientUser = message.mentions.users.first();
+
+  //  var recipientID = await client.users.cache.find(u => u.tag === recipientUsername).id
+
+    console.log('meeep',recipientUser)
+
+    var senderWallet = await WalletHelper.findExistingWalletByUserID(author_id);
+    var senderAddress = senderWallet.acct.address;
 
 
-    var existingWallet = await WalletHelper.findExistingWalletByUserID(author_id);
+    var recipientWallet = await WalletHelper.findExistingWalletByUserID(recipientUser.id);
+    var recipientAddress = recipientWallet.acct.address;
 
-    var result = await WalletHelper.sendTip(author_id, recipientUsername, amountFormatted );
+    var result = await WalletHelper.sendTip(senderAddress, recipientAddress, amountFormatted );
 
     if(result.success )
     {
-      await message.channel.send('A tip of '+ amount + 'has been sent to' + recipientUsername + '.');
+      await message.channel.send('A tip of '+ amountFormatted + ' 0xBTC' + ' has been sent to ' + recipientUsername +'. (https://tipjar.0xbtc.io)');
 
     }else{
       await message.channel.send(result.errormessage);
