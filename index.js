@@ -23,6 +23,8 @@ client.on('message', async message   => {
         +'\n !wallet new: Generate a new account'
         +'\n !wallet info: Display account information'
         +'\n !wallet destroy: Delete your existing account'
+        +'\n !wallet balance: View your balance'
+        +'\n !tip @username #: Send a tip of 0xBTC'
          )
 
 
@@ -176,7 +178,7 @@ client.on('message', async message   => {
     const recipientUser = message.mentions.users.first();
 
   //  var recipientID = await client.users.cache.find(u => u.tag === recipientUsername).id
- 
+
 
     var senderWallet = await WalletHelper.findExistingWalletByUserID(author_id);
     if(!senderWallet)
