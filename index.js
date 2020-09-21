@@ -104,12 +104,14 @@ client.on('message', async message   => {
 
            var existingWallet = await WalletHelper.findExistingWalletByUserID(author_id);
 
-           var currentBalanceFormatted = await WalletHelper.getCurrentBalanceByUserID(author_id);
-
 
 
            if(  existingWallet  )
            {
+
+            var currentBalanceFormatted = await WalletHelper.getCurrentBalanceByUserID(author_id);
+
+
              await message.channel.send('Your balance is '+ currentBalanceFormatted +' 0xBTC on the Matic Network within the Tipjar contract (https://tipjar.0xbtc.io).');
 
 
