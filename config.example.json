@@ -4,9 +4,5 @@
     "PUBLIC_ADDRESS": "",
     "PRIVATE_KEY": ""
   },
-  "INFURA":{
-    "ID":"",
-    "SECRET":"",
-    "URL":"https://mainnet.infura.io/v3/????"
-  }
+  "TOKEN_ADDRESS":"0x71B821aa52a49F32EEd535fCA6Eb5aa130085978"
 }
