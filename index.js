@@ -2,7 +2,7 @@ const Discord = require("discord.js");
 const config = require("./config.json");
 
 
-const WalletHelper = require('./wallet-helper.js');
+const WalletHelper = require('./lib/wallet-helper.js');
 
 
 
