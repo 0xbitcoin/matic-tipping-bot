@@ -176,14 +176,32 @@ client.on('message', async message   => {
     const recipientUser = message.mentions.users.first();
 
   //  var recipientID = await client.users.cache.find(u => u.tag === recipientUsername).id
-
-    console.log('meeep',recipientUser)
+ 
 
     var senderWallet = await WalletHelper.findExistingWalletByUserID(author_id);
+    if(!senderWallet)
+    {
+      await message.channel.send("Error: You do not have an associated wallet. Use '!wallet new' to create one.");
+      return;
+    }
     var senderAddress = senderWallet.acct.address;
+
+    var currentSenderBalance = await WalletHelper.getCurrentBalanceByUserID(author_id);
+    if(parseFloat(currentSenderBalance) < parseFloat(amountFormatted) )
+    {
+      await message.channel.send("Error: Insufficient balance.");
+      return;
+    }
 
 
     var recipientWallet = await WalletHelper.findExistingWalletByUserID(recipientUser.id);
+
+    if(!recipientWallet)
+    {
+      await message.channel.send("Error: The recipient "+recipientUser.username+" does not have an associated wallet. Use '!wallet new' to create one.");
+      return;
+    }
+
     var recipientAddress = recipientWallet.acct.address;
 
     var result = await WalletHelper.sendTip(senderAddress, recipientAddress, amountFormatted );
@@ -191,10 +209,8 @@ client.on('message', async message   => {
     if(result.success )
     {
       await message.channel.send('A tip of '+ amountFormatted + ' 0xBTC' + ' has been sent to ' + recipientUsername +'. (https://tipjar.0xbtc.io)');
-
     }else{
       await message.channel.send(result.errormessage);
-
     }
 
 
