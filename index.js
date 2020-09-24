@@ -15,6 +15,10 @@ WalletHelper.init();
 
 client.on('message', async message   => {
 
+  //sanitize string
+  message = message.replace("$", " ");
+
+
 
   if (message.content.startsWith(`${prefix}wallet`)) {
 
