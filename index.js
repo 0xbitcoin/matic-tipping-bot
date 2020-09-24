@@ -16,13 +16,13 @@ WalletHelper.init();
 client.on('message', async message   => {
 
   //sanitize string
-  message = message.replace("$", " ");
+  var inputContent = message.content.replace("$", " ");
 
 
 
-  if (message.content.startsWith(`${prefix}wallet`)) {
+  if (inputContent.startsWith(`${prefix}wallet`)) {
 
-      if (message.content === (`${prefix}wallet`)) {
+      if (inputContent === (`${prefix}wallet`)) {
         await message.channel.send('Ethereum Burner Wallet Commands:'
         +'\n !wallet new: Generate a new account'
         +'\n !wallet info: Display account information'
@@ -34,7 +34,7 @@ client.on('message', async message   => {
 
       }
 
-      if (message.content === (`${prefix}wallet new`)) {
+      if (inputContent === (`${prefix}wallet new`)) {
 
 
         //find existing wallet in mongo
@@ -70,7 +70,7 @@ client.on('message', async message   => {
       }
 
 
-      if (message.content === (`${prefix}wallet info`)) {
+      if (inputContent === (`${prefix}wallet info`)) {
 
 
           var author_id = message.author.id;
@@ -102,7 +102,7 @@ client.on('message', async message   => {
       }
 
 
-        if (message.content === (`${prefix}wallet balance`)) {
+        if (inputContent === (`${prefix}wallet balance`)) {
 
           var author_id = message.author.id;
 
@@ -132,7 +132,7 @@ client.on('message', async message   => {
 
 
 
-      if (message.content === (`${prefix}wallet destroy`)) {
+      if (inputContent === (`${prefix}wallet destroy`)) {
         var author_id = message.author.id;
 
           var existingWallet = await WalletHelper.findExistingWalletByUserID(author_id);
@@ -170,12 +170,12 @@ client.on('message', async message   => {
   }
 
 
-  if (message.content.startsWith(`${prefix}tip`)) {
+  if (inputContent.startsWith(`${prefix}tip`)) {
 
     var author_id = message.author.id;
 
 
-    var args = message.content.trim().split(' ');
+    var args = inputContent.trim().split(' ');
     var recipientUsername = args[1];
     var amountFormatted = args[2];
 
