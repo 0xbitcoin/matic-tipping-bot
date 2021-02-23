@@ -20,7 +20,7 @@ client.on('message', async message   => {
 
 
 
-  if (inputContent.startsWith(`${prefix}wallet`)) {
+  if (inputContent.startsWith(`${prefix}oldwallet`)) {
 
       if (inputContent === (`${prefix}wallet`)) {
         await message.channel.send('Ethereum Burner Wallet Commands:'
@@ -34,7 +34,7 @@ client.on('message', async message   => {
 
       }
 
-      if (inputContent === (`${prefix}wallet new`)) {
+      if (inputContent === (`${prefix}oldwallet new`)) {
 
 
         //find existing wallet in mongo
@@ -70,7 +70,7 @@ client.on('message', async message   => {
       }
 
 
-      if (inputContent === (`${prefix}wallet info`)) {
+      if (inputContent === (`${prefix}oldwallet info`)) {
 
 
           var author_id = message.author.id;
@@ -102,7 +102,7 @@ client.on('message', async message   => {
       }
 
 
-        if (inputContent === (`${prefix}wallet balance`)) {
+        if (inputContent === (`${prefix}oldwallet balance`)) {
 
           var author_id = message.author.id;
 
@@ -132,7 +132,7 @@ client.on('message', async message   => {
 
 
 
-      if (inputContent === (`${prefix}wallet destroy`)) {
+      if (inputContent === (`${prefix}oldwallet destroy`)) {
         var author_id = message.author.id;
 
           var existingWallet = await WalletHelper.findExistingWalletByUserID(author_id);
@@ -170,7 +170,7 @@ client.on('message', async message   => {
   }
 
 
-  if (inputContent.startsWith(`${prefix}tip`)) {
+  if (inputContent.startsWith(`${prefix}oldtip`)) {
 
     var author_id = message.author.id;
 
