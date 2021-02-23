@@ -17,7 +17,8 @@ client.on('message', async message   => {
 
   //sanitize string
   var inputContent = message.content.replace("$", " ");
-
+  
+  console.log('got inputContent ',inputContent)
 
 
   if (inputContent.startsWith(`${prefix}oldwallet`)) {
